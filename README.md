@@ -6,5 +6,5 @@
 . criando rotas para o projeto;
 
 ## Executando o projeto
-  Para iniciar o projeto basta utilizar o comando `npm start`
+  Para iniciar o projeto basta utilizar o comando `yarn install` e logo apos `npm start`
   mensagem de sucesso ao iniciar projeto `http://localhost:3333`
