@@ -1,3 +1,5 @@
+import 'reflect-metadata'
+import './database'
 import dotenv from 'dotenv'
 dotenv.config()
 

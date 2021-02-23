@@ -6,5 +6,8 @@
 . criando rotas para o projeto;<br />
 
 ## Executando o projeto
-  Para iniciar o projeto basta utilizar o comando `yarn install` e logo apos `npm start`
+  Para iniciar o projeto basta utilizar o comando `yarn install` e logo apos `yarn start`
   mensagem de sucesso ao iniciar projeto `http://localhost:3333`
+
+## Instalando e configurando typeorm no projeto
+  O arquivo `ormconfig.ts` contem toda configuração para o typeorm
