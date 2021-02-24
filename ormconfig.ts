@@ -9,5 +9,6 @@ export default {
   ],
   "cli": {
     "migrationsDir": "./src/migrations"
-  }
+  },
+  "logging": true
 }
