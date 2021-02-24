@@ -11,3 +11,6 @@
 
 ## Instalando e configurando typeorm no projeto
   O arquivo `ormconfig.ts` contem toda configuração para o typeorm
+
+## Testes autimatizados
+  Para executar os testes basta utilizar o comando `yarn test`
