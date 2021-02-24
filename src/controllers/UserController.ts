@@ -1,25 +1,24 @@
 import { Request, response, Response } from 'express'
-import { repository } from '../repository/UserRepository'
+import { UserRepository } from '../repository/UserRepository'
 
 export class UserController {
 
   async create(req: Request, res: Response) {
     const { name, email } = req.body
 
-    const userAlreadyExists = await repository().findOne({ email })
+    const userAlreadyExists = await UserRepository.findOne('email', email)
 
     if (userAlreadyExists) return res.status(400).json({ message: 'Email não disponivel' })
-
-    const user = repository().create({ name, email })
-    await repository().save(user).then(() => {
+    
+    UserRepository.create({ name, email}).then(user => {
       res.status(201).json(user)
-    }).catch((error) => {
-      res.status(400).json({ error })
+    }).catch(error => {
+      res.status(400).json({ message: error.message })
     })
   }
 
   async findAll(req: Request, res: Response) {
-    const users = await repository().find()
+    const users = await UserRepository.findAll()
     return res.status(200).json(users)
   }
 }
