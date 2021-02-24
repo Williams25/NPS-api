@@ -1,5 +1,5 @@
 import { Request, response, Response } from 'express'
-import { SurveyRepository } from '../repository/SurveyRepository '
+import { SurveyRepository } from '../repository/SurveyRepository'
 
 export class SurveyController {
 
