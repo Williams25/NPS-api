@@ -2,9 +2,9 @@ import { SurveyUser } from '../models/SurveyUser'
 import { EntityRepository, getRepository, Repository, Like } from 'typeorm'
 
 interface createInterface {
-  user_id:number
-  survey_id:number 
-  value?:number
+  user_id: number
+  survey_id: number
+  value?: number
 }
 
 interface updateInterface extends createInterface {
@@ -27,7 +27,11 @@ export class SurveyUserRepository extends Repository<SurveyUser> {
     return await SurveyUserRepository.repository().findOne({ ...param })
   }
 
-  static async findAll() {
-    return await SurveyUserRepository.repository().find()
+  static async findAll(param?: any) {
+    return await SurveyUserRepository.repository().find({ ...param })
+  }
+
+  static async update(param: any) {
+    return await SurveyUserRepository.repository().save({ ...param })
   }
 }
