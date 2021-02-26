@@ -17,10 +17,7 @@ export class SendMailController {
     if (!surveyAlreadyExists) return res.status(400).json({ message: 'Pesquisa não disponivel' })
 
     const surveyUserAlreadyExists = await SurveyUserRepository.findOne({
-      where: [
-        { user_id: userAlreadyExists.id },
-        { value: null }
-      ],
+      where: { user_id: userAlreadyExists.id, value: null },
       relations: [
         'user',
         'survey'
@@ -31,18 +28,21 @@ export class SendMailController {
       name: userAlreadyExists.name,
       title: surveyAlreadyExists.title,
       description: surveyAlreadyExists.description,
-      id: userAlreadyExists.id,
+      id: "",
       link: process.env.URL_MAIL
     }
+
     const npsPath = resolve(__dirname, '..', 'views', 'emails', 'npsMail.hbs')
 
     if (surveyUserAlreadyExists) {
+      variables.id = String(surveyUserAlreadyExists.id)
       SendMailServices.execute(email, surveyAlreadyExists.title, variables, npsPath)
       return res.status(200).json(surveyUserAlreadyExists)
     }
 
     await SurveyUserRepository.create({ survey_id: surveyAlreadyExists.id, user_id: userAlreadyExists.id })
       .then(survey => {
+        variables.id = String(survey.id)
         SendMailServices.execute(email, surveyAlreadyExists.title, variables, npsPath)
 
         return res.status(201).json(survey)
