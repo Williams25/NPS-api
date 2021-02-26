@@ -1,4 +1,4 @@
-import { Express, Request, Response } from 'express'
+import { Express, Request, Response, NextFunction } from 'express'
 
 interface Errors {
   message: string,
@@ -6,7 +6,7 @@ interface Errors {
 }
 
 export const error = (app: Express) => {
-  app.use((req: Request, res: Response, next: any) => {
+  app.use((req: Request, res: Response, next: NextFunction) => {
     const erro: Errors = {
       message: 'Não encontrado',
       status: 404
@@ -14,7 +14,7 @@ export const error = (app: Express) => {
     next(erro)
   })
 
-  app.use((error: Errors, req: Request, res: Response, next: any) => {
+  app.use((error: Errors, req: Request, res: Response, next: NextFunction) => {
     res.status(error.status || 500)
     return res.send({
       erro: {
